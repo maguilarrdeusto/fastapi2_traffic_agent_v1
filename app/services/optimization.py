@@ -28,7 +28,7 @@ async def dynamic_congestion_optimize_service(weights: dict) -> dict:
         "Income": w_oc * 0.4 + (w_oc ** 2) * 0.12,
         "Congestion inside": w_pt * 360 + (w_pt ** 2) * 40,
         "Congestion (Delay)": w_cong * 1.0 + (w_cong ** 2) * 0.15,
-        "Emissions": w_em * 0.007 + (w_em ** 2) * 0.0008,
+        "Emissions": w_em * 0.007 + (w_em ** 2) * 0.08,
     }
 
     # 4) Cálculo differences
