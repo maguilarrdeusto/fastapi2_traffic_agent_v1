@@ -13,8 +13,8 @@ async def dynamic_congestion_optimize_service(weights: dict) -> dict:
 
     # 2) Extraer pesos
     w_pt = weights["weight_PublicTransport"]
-    w_oc = weights["weight_OperationalCost"]
     w_cong = weights["weight_Congestion"]
+    w_oc = weights["weight_OperationalCost"]
     w_em = weights["weight_Emissions"]
 
     # 3) Cálculo baseline y optimized
@@ -28,7 +28,7 @@ async def dynamic_congestion_optimize_service(weights: dict) -> dict:
         "Income": w_oc * 0.4 + (w_oc ** 2) * 0.12,
         "Congestion inside": w_pt * 360 + (w_pt ** 2) * 40,
         "Congestion (Delay)": w_cong * 1.0 + (w_cong ** 2) * 0.15,
-        "Emissions": w_em * 0.007 + (w_em ** 2) * 0.08,
+        "Emissions": w_em * 0.07 + (w_em ** 2) * 0.008,
     }
 
     # 4) Cálculo differences
@@ -43,4 +43,6 @@ async def dynamic_congestion_optimize_service(weights: dict) -> dict:
     optimized = {k: round(v, 2) for k, v in optimized.items()}
     difference = {k: round(v, 2) for k, v in difference.items()}
 
-    return {"baseline": baseline, "optimized": optimized, "difference": difference}
+    return {"baseline": baseline,
+            "optimized": optimized,
+            "difference": difference}
